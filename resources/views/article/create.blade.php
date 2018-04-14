@@ -1,4 +1,10 @@
-<form action="{{url('article/create')}}" method="post">
+<ul>
+    @foreach($errors->all() as $row)
+        <li> {{$row}} </li>
+    @endforeach
+</ul>
+
+  <form action="{{url('article/create')}}" method="post">
    
     <table>
         <tr>
@@ -9,7 +15,7 @@
         <tr>
             <td>Content</td>
             <td>:</td>
-            <td><input type="text" name="content"></td>
+            <td><textarea name="content"></textarea></td>
         </tr>
     
     {{csrf_field()}}

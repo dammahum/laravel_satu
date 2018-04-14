@@ -1,13 +1,13 @@
-<form action="{{url('article/edit')}}" method="post">
+<form action="{{url('article/detail')}}" method="post">
    <input type="hidden" name="id" value="{{$article->id}}">
     <table>
         <tr>
-            <td>Title :</td>
-            <td><input type="text" name="title" value="{{$article->title}}"></td>
+            <td>Title</td>
+            <td><p> : {{$article->title}}</p></td>
         </tr>
         <tr>
-            <td>Content :</td>
-            <td><input type="text" name="content" value="{{$article->content}}"></td>
+            <td>Content</td>
+            <td><p> : {{$article->content}}</p></td>
         </tr>
     
     {{csrf_field()}}

@@ -21,6 +21,6 @@ Route::prefix('article')->group(function () {
     Route::post('create', 'ArticleController@article_insert');
     Route::get('edit/{id}', 'ArticleController@article_edit');
     Route::post('edit', 'ArticleController@article_update');
-    Route::get('detail', 'ArticleController@article_detail');
-    Route::get('hapus/{id}', 'ArticleController@article_delete');
+    Route::get('detail/{id}', 'ArticleController@article_detail');
+    Route::get('delete/{id}', 'ArticleController@article_delete');
 });

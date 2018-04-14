@@ -8,18 +8,16 @@ use App\Article;
 class ArticleController extends Controller
 {
     public function article_list()
-    {
-        $no = 1;
-        $article = Article::orderBy('id', 'desc');
+    {        
+        $article = Article::orderBy('id', 'desc')->get();
         return view('article.index', compact('article'));
     }
     
     public function article_insert(Request $request)
     {
         $request->validate([
-           'title' => 'required|min:5',
-           'content' => 'required',
-           'title' => 'required',
+           'title' => 'required|min:10',
+           'content' => 'required'           
         ]);
         
         $request->merge([
@@ -28,7 +26,7 @@ class ArticleController extends Controller
         
         Article::create($request->all());
         
-        return redirect('article')->with('article','article berhasil Ditambahkan');
+        return redirect('article')->with('article','Article berhasil Ditambahkan');
     }
     
     public function article_create()
@@ -36,12 +34,8 @@ class ArticleController extends Controller
         return view('article.create');
     }
     
-    public function article_update()
-    {
-        $request->merge([
-            'title' => title_case($request->name)
-        ]);
-        
+    public function article_update(Request $request)
+    {                
         Article::find($request->id)->update($request->all());
         return redirect('article')->with('article','Data article berhasil diperbarui');
     }
@@ -55,10 +49,10 @@ class ArticleController extends Controller
     public function article_detail($id)
     {
         $article = Article::find($id);
-        return view('article.edit', compact('article'));
+        return view('article.show', compact('article'));
     }
     
-    public function article_delete()
+    public function article_delete($id)
     {
         Article::findOrFail($id)->delete();
         return redirect('article')->with('article','Data article berhasil dihapus');
