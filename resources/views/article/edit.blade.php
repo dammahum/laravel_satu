@@ -1,4 +1,11 @@
-<form action="{{url('article/edit')}}" method="post">
+<ul>
+    @foreach($errors->all() as $row)
+        <li> {{$row}} </li>
+    @endforeach
+</ul>
+  
+
+  <form action="{{url('article/edit')}}" method="post">
    <input type="hidden" name="id" value="{{$article->id}}">
     <table>
         <tr>

@@ -36,6 +36,11 @@ class ArticleController extends Controller
     
     public function article_update(Request $request)
     {                
+        $request->validate([
+           'title' => 'required|min:10',
+           'content' => 'required'           
+        ]);
+        
         Article::find($request->id)->update($request->all());
         return redirect('article')->with('article','Data article berhasil diperbarui');
     }
